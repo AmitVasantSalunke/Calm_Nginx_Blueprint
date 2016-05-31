@@ -84,7 +84,7 @@ The Nginx container relies on receiving traffic on port 80. This is accomplished
 
 In order for the Calm server to communicate with the Docker Engine on the Dockerhost, a designated port must be used for the [Docker Engine RESTful API](https://docs.docker.com/engine/reference/api/docker_remote_api/). This template configures port 4332 for this purpose, but this can be changed to any port that is available within the Dockerhost.
 
-*Traffic on ports: 22, 80, and 4332 (or alternative Docker Engine port, if altered), must allow incoming traffic in their security groups* Ports 4332 and 22 must allow traffic only from the IP of the Calm server, while port 80 must allow traffic from all incoming sources.
+*Traffic on ports: 22, 80, and 4332 (or alternative Docker Engine port, if altered), must allow incoming traffic in their security groups*. Ports 4332 and 22 must allow traffic only from the IP of the Calm server, while port 80 must allow traffic from all incoming sources.
 
 ##### Key pair
 
