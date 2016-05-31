@@ -78,9 +78,13 @@ Choose the VPC and subnet that allow for open traffic. Because this is a non-pro
 
 ##### Security group
 
-The Nginx container relies on port 80. The Calm instance SSH's onto the EC2 instance on port 22. The Docker port is set to 4332. Each of these should have no restrictions on inbound or outbound traffic on these ports.
+The Calm machine SSH's onto the EC2 instance on port 22. Calm needs SSH priviledges in order to make configuration changes to the instance, as well as confirm that the instance and child processes within are functioning correction.
 
-*Choose a security group which allows TCP from all sources on 80, 4332, and 22*
+The Nginx container relies on receiving traffic on port 80. This is accomplished by port mapping the Dockerhost's port 80 to the Nginx container's port 80 (which should already be configured in the template).
+
+In order for the Calm server to communicate with the Docker Engine on the Dockerhost, a designated port must be used for the [Docker Engine RESTful API](https://docs.docker.com/engine/reference/api/docker_remote_api/). This template configures port 4332 for this purpose, but this can be changed to any port that is available within the Dockerhost.
+
+*Traffic on ports: 22, 80, and 4332 (or alternative Docker Engine port, if altered), must allow incoming traffic in their security groups* Ports 4332 and 22 must allow traffic only from the IP of the Calm server, while port 80 must allow traffic from all incoming sources.
 
 ##### Key pair
 
